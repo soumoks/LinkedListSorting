@@ -6,10 +6,18 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
 
+/**
+ * The type File manager.
+ */
 public class FileManager {
 
+    /**
+     * Read file array list.
+     *
+     * @return the array list
+     */
     public ArrayList<String> readFile() {
-        File file = new File("C:\\Users\\vaibh\\Desktop\\MEng. Soft. Engg\\ENSF-593 and ENSF-594\\Programs\\LinkedListSorting\\src\\TextFiles\\input.txt");
+        File file = new File("input.txt");
         ArrayList<String> words = new ArrayList<String>();
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
