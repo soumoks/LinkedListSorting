@@ -7,30 +7,32 @@ import java.util.Arrays;
  */
 public class AnagramApp {
 
-    AnagramApp app = new AnagramApp();
-    AnagramLinkedList wordLinkedList = new AnagramLinkedList();
-    /**
-     * The entry point of application.
-     *
-     * @param args the input arguments
-     */
+    private AnagramLinkedList wordLinkedList;
+    private ModelManager theManager;
+
+    public AnagramApp(){
+        wordLinkedList = new AnagramLinkedList();
+        theManager = new ModelManager();
+    }
+
     public static void main(String [] args) {
-        AnagramLinkedList theLinkedList = new AnagramLinkedList();
-        Controller theController = new Controller(theLinkedList);
-        theController.getWordList();
+        //AnagramLinkedList theLinkedList = new AnagramLinkedList();
         FileManager fileManager = new FileManager();
         ArrayList<String> words = fileManager.readFile();
         AnagramApp app = new AnagramApp();
-        app.areAnagram(words);
+        app.addWordToNode(words);
+//        app.areAnagram(words);
+//        app.theManager.printWordList();
+    }
+
+    public void addWordToNode(ArrayList<String> words){
+        for(String temp:words){
+            //AnagramLinkedList anagramLinkedList = new AnagramLinkedList();
+            wordLinkedList.addNode(new Word(temp));
+        }
     }
 
 
-    /**
-     * Are anagram boolean.
-     *
-     * @param words the words
-     * @return the boolean
-     */
     public boolean areAnagram(ArrayList<String> words) {
         ArrayList<String> temp = new ArrayList<>();
         for(int i = 0; i < words.size(); i++) {
@@ -48,11 +50,16 @@ public class AnagramApp {
 
                 boolean value = isAnagram(c1, c2);
                 if(value) {
-                    temp.add(str1);
-                    temp.add(str2);
-                    app.wordLinkedList.insertToFrontOfList(new Word(str1));
-                    app.wordLinkedList.insertToFrontOfList(new Word(str2));
-                    System.out.println("Anagram words: " + str1 + " " + str2);
+                    //wordLinkedList.insertToFrontOfList(new Word(str1));
+                    //wordLinkedList.insertToFrontOfList(new Word(str2));
+                    //words.remove(str2);
+                    //temp.add()
+                    AnagramLinkedList anagramLinkedList = new AnagramLinkedList();
+                    //anagramLinkedList.insertToFrontOfList(new Word(str1));
+                    anagramLinkedList.insertToFrontOfList(new Word(str2));
+                    words.remove(str2);
+                    theManager.AddLinkedList(anagramLinkedList);
+                    //System.out.println("Anagram words: " + str1 + " " + str2);
                 }
             }
         }

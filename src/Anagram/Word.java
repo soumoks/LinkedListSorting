@@ -27,6 +27,6 @@ public class Word {
     }
 
     public String toString(){
-        return "Name: " + wordName;
+        return wordName;
     }
 }
