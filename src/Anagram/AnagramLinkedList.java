@@ -1,13 +1,11 @@
 package Anagram;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 public class AnagramLinkedList {
     private Word head;
-    ModelManager manager = new ModelManager();
 
-    private Word getHead(){
+    public Word getHead(){
         return head;
     }
 
@@ -17,7 +15,10 @@ public class AnagramLinkedList {
 
     public AnagramLinkedList(){
         setHead(null);
-        //wordList = new Word[];
+    }
+
+    public AnagramLinkedList(Word myWord){
+        setHead(myWord);
     }
 
     public void insertToFrontOfList(Word w){
@@ -63,6 +64,7 @@ public class AnagramLinkedList {
         String temp = "";
         while(cursor != null){
             temp = temp + cursor;
+            temp = temp + " ";
             cursor = cursor.getNext();
         }
         return temp;
@@ -71,50 +73,17 @@ public class AnagramLinkedList {
     public boolean isAnagram(Word w) {
         Word cursor = head;
         boolean isAnagram = false;
-//        if(w.getWordName().length() != cursor.getWordName().length()){
-//            return false;
-//        }
-        while(cursor != null){
-            char[] c1 = cursor.getWordName().toCharArray();
-            char[] c2 = w.getWordName().toCharArray();
-            Arrays.sort(c1);
-            Arrays.sort(c2);
-            for (int k = 0; k < c1.length; k++) {
-                if(c1[k] != c2[k]) {
-                    return false;
-                }
-                isAnagram = true;
+
+        char[] c1 = cursor.getWordName().toCharArray();
+        char[] c2 = w.getWordName().toCharArray();
+        Arrays.sort(c1);
+        Arrays.sort(c2);
+        for (int k = 0; k < c1.length; k++) {
+            if(c1[k] != c2[k]) {
+                return false;
             }
+            isAnagram = true;
         }
         return isAnagram;
-    }
-
-    public void addNode(Word w){
-        for (AnagramLinkedList anagramLinkedList : manager.getWordList()) {
-            if(anagramLinkedList == null){
-
-            }
-              if(anagramLinkedList.isAnagram(w)) {
-                  anagramLinkedList.insertToEndOfList(w);
-              } else {
-                  AnagramLinkedList myList = new AnagramLinkedList();
-                  myList.setHead(w);
-                  manager.AddLinkedList(myList);
-              }
-        }
-
-//        else {
-//            if(isAnagram(w)) {
-//                Word cursor = head;
-//                while(cursor != null){
-//                    myList.insertToEndOfList(w);
-//                    cursor = cursor.getNext();
-//                }
-//            } else {
-//                AnagramLinkedList newList = new AnagramLinkedList();
-//                newList.setHead(w);
-//            }
-//            manager.AddLinkedList(myList);
-//        }
     }
 }

@@ -24,7 +24,6 @@ public class FileManager {
             String st;
             while ((st = br.readLine()) != null)
                 words.add(st);
-                System.out.println(st);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
          } catch (Exception e) {
