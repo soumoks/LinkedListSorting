@@ -2,11 +2,6 @@ package Anagram;
 
 public class ModelManager {
     private AnagramLinkedList [] wordList;
-    private AnagramLinkedList myList;
-
-    public AnagramLinkedList[] getWordList() {
-        return wordList;
-    }
 
     public ModelManager(){}
 
@@ -52,12 +47,36 @@ public class ModelManager {
         return;
     }
 
+    public void InsertionSort() {
+        for (int i = 0; i < getwordListSize(); i++) {
+            doInsertionSort(wordList[i]);
+        }
+    }
+
+    public void doInsertionSort(AnagramLinkedList linkedList) {
+        for(Word i = linkedList.getHead(); i.getNext() != null; i = i.getNext()) {
+			for(Word j = i.getNext();  j != null; j = j.getNext()) {
+				if(i.getWordName().compareToIgnoreCase(j.getWordName()) > 0) {
+					swap(i, j);
+				}
+			}
+		}
+    }
+
+    public void swap(Word i, Word j) {
+        Word temp = new Word();
+        temp.setWordName(i.getWordName());
+
+        i.setWordName(j.getWordName());
+
+        j.setWordName(temp.getWordName());
+    }
+
     public void printWordList(){
         for(int i=0;i<getwordListSize();i++){
             System.out.println(wordList[i]);
         }
     }
-
 }
 
 
