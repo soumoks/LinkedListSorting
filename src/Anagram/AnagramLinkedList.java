@@ -86,4 +86,58 @@ public class AnagramLinkedList {
         }
         return isAnagram;
     }
+
+    /**
+     * Gets the previous node in the linked list given the provided node.
+     * @param w
+     * @return
+     */
+    public Word getPreviousNode(Word w) {
+        Word cursor = head;
+        Word toReturn = null;
+        while (cursor.getNext() != null) {
+            if (cursor.getNext() == w) {
+                toReturn = cursor;
+            }
+            cursor = cursor.getNext();
+        }
+        return toReturn;
+    }
+
+    public void insertInOrder(Word w) {
+        Word cursor = head;
+        Word temp = null;
+        Word prev = null;
+        //Head case - If the provided word is less than the head
+        if (size() == 1) {
+            if (cursor.getWordName().compareTo(w.getWordName()) > 0) {
+                insertToFrontOfList(w);
+                return;
+            } else {
+                insertToEndOfList(w);
+                return;
+            }
+        }
+        while (cursor.getNext() != null) {
+            if (cursor.getWordName().compareTo(w.getWordName()) > 0) {
+                if (cursor == head) {
+                    insertToFrontOfList(w);
+                    return;
+                } else {
+                    prev = getPreviousNode(cursor);
+                    prev.setNext(w);
+                    w.setNext(cursor);
+                    return;
+                }
+            }
+            cursor = cursor.getNext();
+        }
+        if (cursor.getWordName().compareTo(w.getWordName()) > 0) {
+            prev = getPreviousNode(cursor);
+            prev.setNext(w);
+            w.setNext(cursor);
+        } else {
+            insertToEndOfList(w);
+        }
+    }
 }
