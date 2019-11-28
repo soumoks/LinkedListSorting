@@ -16,19 +16,19 @@ public class FileManager {
      *
      * @return the array list
      */
-    public AnagramLinkedList readFile() {
+    public ArrayList<String> readFile() {
         File file = new File("input.txt");
-        AnagramLinkedList anagramLinkedList = new AnagramLinkedList();
+        ArrayList<String> words = new ArrayList<String>();
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
             String st;
             while ((st = br.readLine()) != null)
-                anagramLinkedList.insertToEndOfList(new Word(st));
+                words.add(st);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
          } catch (Exception e) {
             e.printStackTrace();
         }
-        return anagramLinkedList;
+        return words;
     }
 }

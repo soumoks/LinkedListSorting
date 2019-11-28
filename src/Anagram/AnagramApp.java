@@ -15,15 +15,12 @@ public class AnagramApp {
 
     public static void main(String [] args) {
         FileManager fileManager = new FileManager();
-        AnagramLinkedList words = fileManager.readFile();
+        ArrayList<String> words = fileManager.readFile();
         AnagramApp app = new AnagramApp();
-        Word cursor = words.getHead();
-        while(cursor != null) {
-            app.wordLinkedList = new AnagramLinkedList(new Word(cursor.getWordName()));
+        for(String temp:words){
+            app.wordLinkedList = new AnagramLinkedList(new Word(temp));
             app.theManager.addLinkedList(app.wordLinkedList);
-            cursor = cursor.getNext();
         }
-        app.theManager.InsertionSort();
         app.theManager.printWordList();
     }
 }
