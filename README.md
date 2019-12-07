@@ -26,5 +26,5 @@ arc car
 bed
 dog god
 pots stop tops
-You must use linked lists to deal with the arbitrary number of anagrams in a line and use an array
+Linked lists are used to deal with the arbitrary number of anagrams in a line and use an array
 of references to keep track of all the linked lists
