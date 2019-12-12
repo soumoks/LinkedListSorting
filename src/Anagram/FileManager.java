@@ -1,9 +1,6 @@
 package Anagram;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
 import java.util.ArrayList;
 
 /**
@@ -16,8 +13,8 @@ public class FileManager {
      *
      * @return the array list
      */
-    public AnagramLinkedList readFile() {
-        File file = new File("input.txt");
+    public AnagramLinkedList readFile(String filename) {
+        File file = new File(filename);
         AnagramLinkedList anagramLinkedList = new AnagramLinkedList();
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
@@ -30,5 +27,16 @@ public class FileManager {
             e.printStackTrace();
         }
         return anagramLinkedList;
+    }
+
+    public void writeDataToFile(AnagramLinkedList[] arr, String filename) {
+        try (FileWriter writer = new FileWriter(filename);
+             BufferedWriter bw = new BufferedWriter(writer)) {
+            for(int i = 0; i < arr.length; i++) {
+                bw.write(arr[i] + " ");
+            }
+        } catch (IOException e) {
+            System.err.format("IOException: %s%n", e);
+        }
     }
 }

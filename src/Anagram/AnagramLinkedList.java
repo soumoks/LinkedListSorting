@@ -48,7 +48,7 @@ public class AnagramLinkedList {
         return cursor;
     }
 
-    private int size(){
+    public int size(){
         Word cursor = head;
         int counter = 0;
         while(cursor != null && cursor.getNext() != null){
@@ -76,8 +76,13 @@ public class AnagramLinkedList {
 
         char[] c1 = cursor.getWordName().toCharArray();
         char[] c2 = w.getWordName().toCharArray();
+
+        //Check if lenght of the words are the same. Only proceed if they are equal. Otherwise, return False.
+        if(c1.length != c2.length)
+            return false;
         Arrays.sort(c1);
         Arrays.sort(c2);
+
         for (int k = 0; k < c1.length; k++) {
             if(c1[k] != c2[k]) {
                 return false;
